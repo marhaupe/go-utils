@@ -6,13 +6,9 @@ import (
 
 // EqualsUnordered compares two slices without failing if they're not in the same order
 func EqualsUnordered(x []interface{}, y []interface{}) bool {
-	if x == nil && y != nil {
-		return false
+	if x == nil || y == nil {
+		return x == nil && y == nil
 	}
-	if x != nil && y == nil {
-		return false
-	}
-
 	reflect.DeepEqual()
 
 	v1 := reflect.ValueOf(x)

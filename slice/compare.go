@@ -1,7 +1,6 @@
-package utils
+package slice
 
 import (
-	"fmt"
 	"reflect"
 )
 
@@ -14,8 +13,6 @@ func EqualsUnordered(x interface{}, y interface{}) bool {
 	vx := reflect.ValueOf(x)
 	vy := reflect.ValueOf(y)
 
-	fmt.Println("X: ", fmt.Sprint(vx))
-	fmt.Println("Y: ", fmt.Sprint(vy))
 	// If it isn't an array or a slice, do the usual DeepEqual()
 	if vx.Kind() != reflect.Slice && vx.Kind() != reflect.Array {
 		return reflect.DeepEqual(x, y)

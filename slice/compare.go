@@ -29,11 +29,13 @@ func EqualsUnordered(x interface{}, y interface{}) bool {
 	}
 
 	// From this point on, type and element type of array are the same.
-
+	// Arrays with the length 0 don't need to be compared
 	if vx.Len() == 0 {
 		return true
 	}
 
+	// Since x and y are arrays but the compiler doesn't know that,
+	// build up an array with the given reflection methods
 	xarr := make([]interface{}, vx.Len())
 	yarr := make([]interface{}, vy.Len())
 	for i := 0; i < vx.Len(); i++ {
@@ -46,6 +48,7 @@ func EqualsUnordered(x interface{}, y interface{}) bool {
 		for _, yel := range yarr {
 			if reflect.DeepEqual(xel, yel) {
 				contains = true
+				break
 			}
 		}
 		if !contains {
